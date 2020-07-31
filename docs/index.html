@@ -43,9 +43,26 @@
                 <li>Each file is concerned with one responsibility, following (you guessed it) the Single Responsibility Principle</li>
             </ol>
             <h2>How Does It Work?</h2>
+            <p>ChainLink is built with the following frameworks:</p>
+            <ul>
+                <li>jQuery: to make working with the DOM a little easier</li>
+                <ul>
+                    <li>jQuery may be getting a little old, but it's reliable and makes common JavaScript tasks easier</li>
+                </ul>
+                <li>Handlebars: to enable HTML templating</li>
+                <ul>
+                    <li>Have you ever tried building DOM elements with jQuery? Not exactly a party</li>
+                </ul>
+            </ul>
+            <p>ChainLink provides two basic Template classes, which can be extended to create your own templates:</p>
+            <ul>
+                <li>InternalTemplate: use this class if your template Handlebars code will already be available in the page HTML.</li>
+                <li>ExternalTemplate: use this class if your template Handlebars code will be stored in external files.</li>
+            </ul>
+            <p>View the <a href="https://github.com/calebayoung/chainlink.js/blob/master/README.md" target="_blank">project README</a> for code examples and specific instructions on how to use these classes to build your own templates.</p>
             <h2>The "Other Problem" I Didn't Tell You About</h2>
             <h2>Why Is It a "Methodology/Framework"?</h2>
-            <h2>Dependencies</h2>
+            <h2>Pros & Cons</h2>
             <h2>How to Get Started</h2>
         </div>
         <!-- Bootstrap JS Dependencies -->

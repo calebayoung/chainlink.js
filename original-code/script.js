@@ -9,8 +9,8 @@ jQuery( $ => {
             text: 'I am here too, I guess'
         };
 
-        const firstParagraph = new Paragraph( dynamicContext, $( '#here-please' ) ),
-            secondParagraph = new Paragraph( secondDynamicContext, $( '#here-please' ) );
+        const firstParagraph = new Paragraph( dynamicContext, $( '#render-frame' ) ),
+            secondParagraph = new Paragraph( secondDynamicContext, $( '#render-frame' ) );
 
         console.log( firstParagraph );
         console.log( secondParagraph );
@@ -18,24 +18,56 @@ jQuery( $ => {
 
 });
 
-class Template {
+/**
+ * Allows the use of external .hbs template files
+ *
+ * @param   {string}    name    The name of the .hbs template file
+ * @usedby  ExternalTemplate
+ * @link    https://stackoverflow.com/questions/23013447/how-to-define-handlebar-js-templates-in-an-external-file
+ */
+Handlebars.getTemplate = function( name ) {
+    if ( Handlebars.templates === undefined || Handlebars.templates[ name ] === undefined ) {
+        $.ajax( {
+            url : '/chainlink/original-code/' + name + '.hbs',
+            success : function( data ) {
+                if ( Handlebars.templates === undefined) {
+                    Handlebars.templates = {};
+                }
+                Handlebars.templates[ name ] = Handlebars.compile( data );
+            },
+            async : false
+        } );
+    }
+    return Handlebars.templates[ name ];
+};
+
+class InternalTemplate {
 
     constructor( templateSelector, context ) {
-        let source = $( templateSelector ).html(),
-            template = Handlebars.compile( source ),
-            renderedTemplate = template( context );
-        this.renderedTemplate = renderedTemplate;
+        let source = $( `#${templateSelector}` ).html(),
+            template = Handlebars.compile( source );
+        this.renderedTemplate = template( context );
     }
 
 }
 
-class Paragraph extends Template {
+class ExternalTemplate {
+
+    constructor( templateSelector, context ) {
+        let template = Handlebars.getTemplate( templateSelector );
+        this.renderedTemplate = template( context );
+    }
+
+}
+
+class Paragraph extends ExternalTemplate {
 
     constructor( context, renderTarget ) {
-        super( '#paragraph-template', context );
+        super( 'paragraph', context );
 
         this.text = context.text;
         this.element = $( this.renderedTemplate ).appendTo( renderTarget );
+
         $( this.element ).on( 'click', () => {
             this.talk();
         } );

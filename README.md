@@ -35,3 +35,17 @@ This diagram oversimplifies things a little, but hopefully the idea is clear. Wi
 2. The HTML template code and JavaScript functionality is modular and reusable (more on this later)
 
 3. Each file is concerned with one responsibility, following (you guessed it) the Single Responsibility Principle
+
+## How Does It Work?
+
+ChainLink is built with the following frameworks:
+
+- jQuery: to make working with the DOM a little easier
+    - jQuery may be getting a little old, but it's reliable and makes common JavaScript tasks easier
+- Handlebars: to enable HTML templating
+    - Have you ever tried building DOM elements with jQuery? Not exactly a party
+
+ChainLink provides two basic Template classes, which can be extended to create your own templates:
+
+- InternalTemplate: use this class if your template Handlebars code will already be available in the page HTML.
+- ExternalTemplate: use this class if your template Handlebars code will be stored in external files.
