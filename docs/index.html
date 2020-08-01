@@ -60,10 +60,32 @@
                 <li>ExternalTemplate: use this class if your template Handlebars code will be stored in external files.</li>
             </ul>
             <p>View the <a href="https://github.com/calebayoung/chainlink.js/blob/master/README.md" target="_blank">project README</a> for code examples and specific instructions on how to use these classes to build your own templates.</p>
-            <h2>The "Other Problem" I Didn't Tell You About</h2>
+            <p>Explore this website to view working demos.</p>
             <h2>Why Is It a "Methodology/Framework"?</h2>
+            <p>ChainLink is built around a simple idea, and it takes a relatively small amount of code to implement the foundation. You are welcome to download, install, and use ChainLink files like any framework. You are also welcome to build your own version (let me know when you do because I’m sure yours will be better and I’ll be curious).</p>
             <h2>Pros & Cons</h2>
+            <p>Pros:</p>
+            <ul>
+                <li>Extremely lightweight (not a full front-end framework, compatible with any other technology you're already using)</li>
+                <li>Templating works whether your data is synchronous/server-side or asynchronous</li>
+                <li>Source code remains modular and simple</li>
+                <li>ChainLink is small and easy to understand</li>
+                <li>Uses popular web frameworks</li>
+            </ul>
+            <p>Cons:</p>
+            <ul>
+                <li>Designed and built by just one guy (and even I haven’t used it in production yet)</li>
+                <li>Expands your technical debt in three directions: jQuery, Handlebars, and ChainLink itself</li>
+                <li>Depends entirely on the developer to enforce as a standard</li>
+            </ul>
             <h2>How to Get Started</h2>
+            <ol>
+                <li>Download/clone the repo into your project</li>
+                <li>Link the JavaScript files to your web project</li>
+                <li>Write your own JavaScript classes, extending either InternalTemplate or ExternalTemplate and following the code examples</li>
+                <li>Create the Handlebars templates for each class (either internally or externally)</li>
+                <li>Write the page driver JavaScript which instantiates objects from your custom classes and inserts their templates into the page</li>
+            </ol>
         </div>
         <!-- Bootstrap JS Dependencies -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
