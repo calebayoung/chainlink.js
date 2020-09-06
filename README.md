@@ -30,22 +30,22 @@ See the code examples below to learn how to write/build each of these components
 ```html
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ChainLink.js Paragraph Example</title>
-    </head>
-    <body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ChainLink.js Paragraph Example</title>
+	</head>
+	<body>
 		<!-- Render-Target Element -->
 		<div id="render-frame"></div>
 		<!-- Dependencies -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 		<!-- ChainLink Components -->
 		<script src="../ExternalTemplate.js"></script>
 		<script src="Paragraph.js"></script>
-        <script src="script.js"></script>
-    </body>
+		<script src="script.js"></script>
+	</body>
 </html>
 ```
 
@@ -60,24 +60,24 @@ See the code examples below to learn how to write/build each of these components
 ```js
 class Paragraph extends ExternalTemplate {
 
-    constructor( context, renderTarget ) {
+	constructor( context, renderTarget ) {
 		// If the .hbs file is in a different directory than
 		// this class file, specify the relative path in
 		// the first parameter of super() (set to null here)
-        super( null, 'paragraph', context, renderTarget );
+		super( null, 'paragraph', context, renderTarget );
 
-        this.text = context.text;
+		this.text = context.text;
 
-        $( this.element ).on( 'click', () => {
-            this.talk();
-        } );
-    }
+		$( this.element ).on( 'click', () => {
+			this.talk();
+		} );
+	}
 
-    talk() {
+	talk() {
 		// talk() is a little contrived, but it illustrates how
 		// to add custom functionality inside Chainlink modules
-        console.log( 'Hello! Oh yeah, my text says: ' + this.text );
-    }
+		console.log( 'Hello! Oh yeah, my text says: ' + this.text );
+	}
 
 }
 ```
@@ -87,27 +87,27 @@ class Paragraph extends ExternalTemplate {
 ```js
 jQuery( $ => {
 
-    $( () => {
+	$( () => {
 
 		// This data is hard-coded here, but imagine loading
 		// it from an API or another part of the project
-        dynamicContext = {
-            text: 'Dynamic class-based front-end templating!'
-        };
-        secondDynamicContext = {
-            text: 'I am here too, I guess'
-        };
+		dynamicContext = {
+			text: 'Dynamic class-based front-end templating!'
+		};
+		secondDynamicContext = {
+			text: 'I am here too, I guess'
+		};
 
 		// Notice how small this driver code is!
-        const firstParagraph = new Paragraph( dynamicContext, $( '#render-frame' ) ),
-            secondParagraph = new Paragraph( secondDynamicContext, $( '#render-frame' ) );
+		const firstParagraph = new Paragraph( dynamicContext, $( '#render-frame' ) ),
+			secondParagraph = new Paragraph( secondDynamicContext, $( '#render-frame' ) );
 
 		// Again, talk() is a little contrived, but notice
 		// how easy it is to trigger custom functionality
 		// attached to each individual object
 		firstParagraph.talk();
 		secondParagraph.talk();
-    });
+	});
 
 });
 ```
